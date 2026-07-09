@@ -32,9 +32,7 @@ with st.sidebar:
     fred_ok = bool(settings.fred_api_key)
     ai_ok   = bool(settings.anthropic_api_key or settings.openai_api_key)
     tg_ok   = bool(settings.telegram_bot_token)
-    st.markdown(f"""
-   vix_str = f"{sentiment.vix:.1f}" if sentiment.vix is not None else "—"
-risk_str = sentiment.risk_appetite.replace('-', ' ').upper() if sentiment.risk_appetite else "—"
+    st.markdown(f"""<div style="font-size:11px;line-height:2;color:{DIM}">
     {'✅' if fred_ok else '❌'} FRED API {'connected' if fred_ok else '— add key in secrets'}<br>
     {'✅' if ai_ok   else '❌'} AI provider {'ready' if ai_ok else '— add key in secrets'}<br>
     {'✅' if tg_ok   else '⚪'} Telegram {'active' if tg_ok else 'not configured'}<br>
@@ -156,11 +154,13 @@ with right:
         section_header("Market Sentiment", "🧭")
         score = sentiment.overall_score
         color = BULL if score >= 60 else (BEAR if score <= 40 else GOLD)
+        vix_str = f"{sentiment.vix:.1f}" if sentiment.vix is not None else "—"
+        risk_str = sentiment.risk_appetite.replace('-', ' ').upper() if sentiment.risk_appetite else "—"
         st.markdown(f"""<div style="background:#111118;border:1px solid #1e1e2e;border-radius:10px;
         padding:1rem;margin-bottom:1rem;text-align:center">
         <div style="font-size:2.5rem;font-weight:900;color:{color}">{score:.0f}</div>
         <div style="font-size:0.9rem;font-weight:700;color:{color};margin-bottom:8px">{sentiment.fear_greed_label}</div>
-        <div style="font-size:11px;color:{DIM}">VIX {sentiment.vix:.1f} · {sentiment.risk_appetite.replace('-',' ').upper()}</div>
+        <div style="font-size:11px;color:{DIM}">VIX {vix_str} · {risk_str}</div>
         </div>""", unsafe_allow_html=True)
 
     # Bond yields strip
