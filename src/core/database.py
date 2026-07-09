@@ -92,17 +92,18 @@ class CotSnapshot(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
 
+# ── Auto-create tables on every import ───────────────────────────────────────
+# This means any page that imports from src.core.database will trigger
+# table creation automatically — no need to call it manually from each page.
+try:
+    Base.metadata.create_all(engine)
+except Exception:
+    pass  # will surface as a DB error on first query — not a crash
+
+
 def get_db() -> Session:
     return SessionLocal()
 
 
 def create_tables():
     Base.metadata.create_all(engine)
-
-
-# Ensure tables exist as soon as this module is imported by ANY page —
-# not just when dashboard.py happens to run first. In a Streamlit
-# multi-page app, navigating directly to a page under pages/ runs only
-# that page's script, so relying solely on dashboard.py's create_tables()
-# call left other pages hitting "no such table" errors.
-create_tables()
