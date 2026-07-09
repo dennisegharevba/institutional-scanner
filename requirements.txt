@@ -1,18 +1,22 @@
-streamlit==1.36.0
-anthropic==0.28.0
-openai==1.35.0
-pandas==2.2.2
-numpy==1.26.4
-yfinance==0.2.40
-requests==2.32.3
-httpx==0.27.1
-beautifulsoup4==4.12.3
-lxml==5.2.2
-plotly==5.22.0
-sqlalchemy==2.0.30
-aiosqlite==0.20.0
-tenacity==8.3.0
-loguru==0.7.2
-python-dotenv==1.0.1
-pytz==2024.1
-apscheduler==3.10.4
+# ── Streamlit Cloud compatible requirements ──────────────────────────────────
+# Pinned versions that have pre-built wheels for Python 3.12–3.14
+# lxml removed — not available without system C libs on Streamlit Cloud
+# pandas unpinned — lets uv/pip pick the right wheel for the Python version
+
+streamlit>=1.36.0
+anthropic>=0.28.0
+openai>=1.35.0
+pandas>=2.0.0
+numpy>=1.24.0
+yfinance>=0.2.40
+requests>=2.32.0
+httpx>=0.27.0
+beautifulsoup4>=4.12.0
+plotly>=5.22.0
+sqlalchemy>=2.0.0
+aiosqlite>=0.20.0
+tenacity>=8.3.0
+loguru>=0.7.2
+python-dotenv>=1.0.0
+pytz>=2024.1
+apscheduler>=3.10.0
