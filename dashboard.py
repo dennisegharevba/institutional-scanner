@@ -33,7 +33,8 @@ with st.sidebar:
     ai_ok   = bool(settings.anthropic_api_key or settings.openai_api_key)
     tg_ok   = bool(settings.telegram_bot_token)
     st.markdown(f"""
-    <div style="font-size:11px;line-height:2;color:{DIM}">
+   vix_str = f"{sentiment.vix:.1f}" if sentiment.vix is not None else "—"
+risk_str = sentiment.risk_appetite.replace('-', ' ').upper() if sentiment.risk_appetite else "—"
     {'✅' if fred_ok else '❌'} FRED API {'connected' if fred_ok else '— add key in secrets'}<br>
     {'✅' if ai_ok   else '❌'} AI provider {'ready' if ai_ok else '— add key in secrets'}<br>
     {'✅' if tg_ok   else '⚪'} Telegram {'active' if tg_ok else 'not configured'}<br>
