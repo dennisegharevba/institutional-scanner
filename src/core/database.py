@@ -98,3 +98,11 @@ def get_db() -> Session:
 
 def create_tables():
     Base.metadata.create_all(engine)
+
+
+# Ensure tables exist as soon as this module is imported by ANY page —
+# not just when dashboard.py happens to run first. In a Streamlit
+# multi-page app, navigating directly to a page under pages/ runs only
+# that page's script, so relying solely on dashboard.py's create_tables()
+# call left other pages hitting "no such table" errors.
+create_tables()
