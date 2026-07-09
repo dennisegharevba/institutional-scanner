@@ -64,7 +64,16 @@ MARKETS: dict[str, dict] = {
     "BTC":   {"name": "Bitcoin",     "class": "crypto",    "yahoo": "BTC-USD", "cot_code": None},
     "ETH":   {"name": "Ethereum",    "class": "crypto",    "yahoo": "ETH-USD", "cot_code": None},
 }
-
+CENTRAL_BANKS: dict[str, dict] = {
+    "FED": {"name": "Federal Reserve",         "currency": "USD"},
+    "ECB": {"name": "European Central Bank",   "currency": "EUR"},
+    "BOJ": {"name": "Bank of Japan",           "currency": "JPY"},
+    "BOE": {"name": "Bank of England",         "currency": "GBP"},
+    "BOC": {"name": "Bank of Canada",          "currency": "CAD"},
+    "RBA": {"name": "Reserve Bank of Australia","currency": "AUD"},
+    "SNB": {"name": "Swiss National Bank",     "currency": "CHF"},
+    "PBOC":{"name": "People's Bank of China",  "currency": "CNY"},
+}
 FRED_SERIES = {
     "cpi":          "CPIAUCSL",   "core_cpi":    "CPILFESL",
     "pce":          "PCEPI",      "core_pce":    "PCEPILFE",
